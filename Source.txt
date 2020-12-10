@@ -1,0 +1,4 @@
+ClosedXML.Excel ........ : pour cree le livret au format excel
+PdfSharp.Pdf ........... : pour manipuler modifer cree un pdf
+MySql.Data.MySqlClient . : pour les manipulation de donnee avec la base
+GemBox.Spreadsheet ..... : pour convertif un ficher excel en pdf

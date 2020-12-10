@@ -1,0 +1,6 @@
+le but du ppe3 est de crée une solution logiciel,
+pour automatiser et faciliter la creation des livret scolaire.
+
+
+
+https://trello.com/b/n7E4ykPJ/ppe3

@@ -1,0 +1,18 @@
+SELECT NOM_ETUDIANT, PRENOM_ETUDIANT, MOYENNE, AVIS_SYNTHESE, LIBELLE_MATIERE, COEFFICIENT_MATIERE, UIJ 
+	FROM etudiant 
+	INNER JOIN classe ON classe.ID_CLASSE = etudiant.ID_CLASSE 
+	INNER JOIN participe ON participe.ID_ETUDIANT = etudiant.ID_ETUDIANT 
+	INNER JOIN matiere ON matiere.ID_MATIERE = participe.ID_MATIERE 
+	WHERE NOM_CLASSE = 'BTS SIO 2'
+	ORDER BY NOM_ETUDIANT, PRENOM_ETUDIANT
+
+Permet davoir toute les information pour cree le table de synthese d'une classe
+
+SELECT NOMENTREPRISE_STAGE, DATEDEBUT_PERIODE, DATEFIN_PERIODE, APPRECIATION_STAGE
+	FROM stage
+	INNER JOIN etudiant ON etudiant.ID_ETUDIANT = stage.ID_ETUDIANT
+	INNER JOIN periode ON stage.ID_PERIODE = periode.ID_PERIODE
+	WHERE NOM_ETUDIANT = 'nomEtudiant'
+	AND PRENOM_ETUDIANT = 'prenomEtudaint'
+
+Permet d'avoir toute les information pour les stages d'une etudiant

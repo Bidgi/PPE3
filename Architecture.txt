@@ -1,0 +1,18 @@
+PPE3
+	-> Model : Dossier
+			-> GestionBDD.. : class static
+			-> Matiere..... : class
+			-> Moyennes.... : class
+			-> Synthese....	: class
+			-> Utilitaires.	: class static
+	-> Page : Dossier
+			-> Accueil : From
+			-> AjoutAppreciation...	: From
+			-> AjouteStage.........	: From
+			-> AjoutMoyenne........	: From
+			-> Connection..........	: From
+			-> ConsultLivret.......	: From
+			-> ConsultLivretClasse.	: From
+			-> ConsultStage........	: From
+			-> ConsultSynthese.....	: From
+			-> ResultatPasse.......	: From
