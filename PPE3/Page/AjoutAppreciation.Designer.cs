@@ -46,6 +46,7 @@
             // 
             // txtAppreciationActu
             // 
+            this.txtAppreciationActu.Enabled = false;
             this.txtAppreciationActu.Location = new System.Drawing.Point(12, 164);
             this.txtAppreciationActu.Multiline = true;
             this.txtAppreciationActu.Name = "txtAppreciationActu";
