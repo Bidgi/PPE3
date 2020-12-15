@@ -36,6 +36,7 @@
             this.BtnLivretClasse = new System.Windows.Forms.Button();
             this.btnConsultStage = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.btnNonMoyenne = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // AjoutMoyenne
@@ -118,11 +119,22 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.BtnConsultStages_Click);
             // 
+            // btnNonMoyenne
+            // 
+            this.btnNonMoyenne.Location = new System.Drawing.Point(12, 340);
+            this.btnNonMoyenne.Name = "btnNonMoyenne";
+            this.btnNonMoyenne.Size = new System.Drawing.Size(243, 35);
+            this.btnNonMoyenne.TabIndex = 8;
+            this.btnNonMoyenne.Text = "Consulter etudiant non moyenne";
+            this.btnNonMoyenne.UseVisualStyleBackColor = true;
+            this.btnNonMoyenne.Click += new System.EventHandler(this.btnNonMoyenne_Click);
+            // 
             // Accueil
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(282, 450);
+            this.Controls.Add(this.btnNonMoyenne);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnConsultStage);
             this.Controls.Add(this.BtnLivretClasse);
@@ -147,5 +159,6 @@
         private System.Windows.Forms.Button BtnLivretClasse;
         private System.Windows.Forms.Button btnConsultStage;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnNonMoyenne;
     }
 }

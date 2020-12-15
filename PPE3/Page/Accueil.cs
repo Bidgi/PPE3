@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using PPE3.Classe;
+using PPE3.Model;
 using PPE3.MySql;
 using PPE3.Page;
 
@@ -97,6 +98,16 @@ namespace PPE3.Page
         {
             ConsultStage consultStage = new ConsultStage();
             consultStage.Show();
+            this.Close();
+        }
+
+        /// <summary>
+        /// ferme le form en cour et ouvre un nouveau form ConsultEtudiantNonMoyenne
+        /// </summary>
+        private void btnNonMoyenne_Click(object sender, EventArgs e)
+        {
+            ConsultEtudiantNonMoyenne consultEtudiantNonMoyenne = new ConsultEtudiantNonMoyenne();
+            consultEtudiantNonMoyenne.Show();
             this.Close();
         }
     }

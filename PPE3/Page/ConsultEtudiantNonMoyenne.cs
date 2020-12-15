@@ -1,4 +1,5 @@
 ﻿using PPE3.MySql;
+using PPE3.Page;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,11 +10,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace PPE3.Page
+namespace PPE3.Model
 {
-    public partial class ConsultSynthese : Form
+    public partial class ConsultEtudiantNonMoyenne : Form
     {
-        public ConsultSynthese()
+        public ConsultEtudiantNonMoyenne()
         {
             InitializeComponent();
         }
@@ -21,21 +22,19 @@ namespace PPE3.Page
         /// <summary>
         /// permet de charche le combox des nom de classe
         /// </summary>
-        private void ConsultSynthese_Load(object sender, EventArgs e)
+        private void ConsultEtudiantNonMoyenne_Load(object sender, EventArgs e)
         {
             foreach (string uneClasse in GestionBDD.CbbNomClasse()) cbbClasse.Items.Add(uneClasse);
             cbbClasse.SelectedIndex = 0;
         }
 
-        /// <summary>
-        /// permet d'afficher dans un datagridview la synthese d'une classe
-        /// </summary>
-        private void CbbClasse_SelectedIndexChanged(object sender, EventArgs e)
+        private void cbbClasse_SelectedIndexChanged(object sender, EventArgs e)
         {
             GestionBDD.IncrementationSynthese(cbbClasse.Text);
             DataTable dt = new DataTable();
             dt.Columns.Add("Nom", typeof(string));
             dt.Columns.Add("Prenom", typeof(string));
+            dt.Columns.Add("Nombre de point manquant", typeof(string));
             dt.Columns.Add("E11", typeof(string));
             dt.Columns.Add("E12", typeof(string));
             dt.Columns.Add("E21", typeof(string));
@@ -47,9 +46,9 @@ namespace PPE3.Page
             dt.Columns.Add("Total", typeof(string));
             dt.Columns.Add("Moyenne", typeof(string));
             dt.Columns.Add("Avis", typeof(string));
-            dt.Rows.Add(new string[] {});
-            dgv.Refresh();
-            foreach (List<string> unEtudiant in GestionBDD.TableauNote())
+            dt.Rows.Add(new string[] { });
+            dataGridView1.Refresh();
+            foreach (List<string> unEtudiant in GestionBDD.TableauNoteNonMoyenne())
             {
                 dt.Rows.Add(new string[]{unEtudiant.ElementAt(0),
                     unEtudiant.ElementAt(1),
@@ -65,16 +64,26 @@ namespace PPE3.Page
                     unEtudiant.ElementAt(11),
                     unEtudiant.ElementAt(12)});
             }
-            dgv.DataSource = dt;
+            dataGridView1.DataSource = dt;
         }
 
         /// <summary>
         /// ferme le form en cour et ouvre un nouveau form accueil
         /// </summary>
-        private void BtnFin_Click(object sender, EventArgs e)
+        private void btnFin_Click(object sender, EventArgs e)
         {
             Accueil accueil = new Accueil();
             accueil.Show();
+            this.Close();
+        }
+
+        /// <summary>
+        /// ferme le form en cour et ouvre un nouveau form Modifier_note
+        /// </summary>
+        private void btnModif_Click(object sender, EventArgs e)
+        {
+            Modifier_note modifier_Note = new Modifier_note();
+            modifier_Note.Show();
             this.Close();
         }
     }

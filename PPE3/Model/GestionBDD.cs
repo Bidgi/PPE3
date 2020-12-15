@@ -430,6 +430,59 @@ namespace PPE3.MySql
             using (var reader = cmd.ExecuteReader()) while (reader.Read()) result.Add(new List<string>() { reader.GetString(0), reader.GetString(1), reader.GetString(2), reader.GetString(3) });
             return result;
         }
+
+
+        /// <summary>
+        /// permet d'avoir la list des synthese des etudiant qui non pas la moyenne
+        /// </summary>
+        /// <returns> list de synthese </returns>
+        public static List<Synthese> EtudiantNonMoyenne()
+        {
+            List<Synthese> syntheses = new List<Synthese>();
+            foreach (Synthese uneSynthese in Synthese.CollClasseSynthese)
+            {
+                if (uneSynthese.Avis != "DFP")
+                {
+                    int moyenne = 0;
+                    foreach (Moyennes uneMoyenne in uneSynthese.LesMoyenne) moyenne += uneMoyenne.Moyenne;
+                    moyenne = moyenne / uneSynthese.LesMoyenne.Count();
+                    if (moyenne < 10) syntheses.Add(uneSynthese);
+                }
+            }
+            return syntheses;
+        }
+
+        /// <summary>
+        /// permet de cree le tableau de synthese via les donnee des classe (Matiere, Moyennes, Synthese)
+        /// </summary>
+        /// <returns> une list de list des etudiant avec leurs moyennes </returns>
+        public static List<List<string>> TableauNoteNonMoyenne()
+        {
+            List<List<string>> result = new List<List<string>>();
+            List<string> ListCoef = new List<string>() { "Coeficient", "" };
+            foreach (Moyennes uneMoyenne in Synthese.CollClasseSynthese.ElementAt(0).LesMoyenne) if (uneMoyenne.LaMatiere.Uij != "EF2") ListCoef.Add(uneMoyenne.LaMatiere.Coef.ToString());
+            for (int i = 0; i < 3; i++) ListCoef.Add("");
+            result.Add(ListCoef);
+            foreach (Synthese synthese in EtudiantNonMoyenne())
+            {
+                int total = 0;
+                List<string> list = new List<string>() { synthese.Nom, synthese.Prenom };
+                foreach (Moyennes uneMoyenne in synthese.LesMoyenne)
+                {
+                    if (uneMoyenne.LaMatiere.Uij != "EF2")
+                    {
+                        total += uneMoyenne.Moyenne;
+                        list.Add(uneMoyenne.Moyenne.ToString());
+                    }
+                }
+                list.Add(total.ToString());
+                list.Add((total / synthese.LesMoyenne.Count()).ToString());
+                list.Insert(2, "" + (220 - total));
+                list.Add(synthese.Avis);
+                result.Add(list);
+            }
+            return result;
+        }
         #endregion
     }
 }
